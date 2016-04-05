@@ -5,7 +5,7 @@ import com.typesafe.sbteclipse.plugin.EclipsePlugin.EclipseKeys
 object FPInScalaBuild extends Build {
 
   val opts = Project.defaultSettings ++ Seq(
-    scalaVersion := "2.11.5",
+    scalaVersion := "2.11.7",
     ivyScala := ivyScala.value map { _.copy(overrideScalaVersion = true) },
 //    scalacOptions ++= Seq(
 //      "-deprecation",
