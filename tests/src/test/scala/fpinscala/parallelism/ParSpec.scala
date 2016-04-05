@@ -65,7 +65,7 @@ class ParSpec extends Specification with DataTables {
       val parList = Par.sequence(ps)
 
       try {
-        // The execution time must be roughly lower than 100ms.
+        // The execution time must be around d1 ms.
         val res = parList(es).get(safeMaxFor(d1), TimeUnit.MILLISECONDS)
         res must_== List(CA(s"1-${d1}ms"), CA(s"2-${d1}ms"), CA(s"3-${d1}ms"))
       } catch {
@@ -75,8 +75,8 @@ class ParSpec extends Specification with DataTables {
   }
 
   "Exercise 7.6: parFilter." in {
-    // Note: With a newFixedThreadPool and iIf the list contains more than 5 elements the test hangs! It is due at least to the size
-    // of the newFixedThreadPool but I don't get the exact reason.
+    // Note: With a newFixedThreadPool and if the list contains more than 5 elements the test hangs.
+    // For more information why, read the paragraph about deadlocks and thread pools of bounded size. 
     val as = List(CA("1"), CA("2"), CA("3"), CA("4"), CA("5"), CA("6"), CA("7"), CA("8"))
     val parList = Par.parFilter(as) { ca =>
       Thread.sleep(d2)
